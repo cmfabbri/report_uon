@@ -1,6 +1,8 @@
 \babel@toc {english}{}\relax 
 \vspace {-\cftbeforepartskip }
 \contentsline {chapter}{{Literature Review}}{iii}{chapter*.1}%
+\contentsline {section}{\numberline {0.1}{Bayesian statistics}}{iv}{section.0.1}%
+\contentsline {section}{\numberline {0.2}{Hierarchical Bayesian statistics}}{iv}{section.0.2}%
 \contentsline {chapter}{{Completed Work}}{v}{chapter*.2}%
 \contentsline {chapter}{{Work Plan}}{vii}{chapter*.3}%
 \contentsline {chapter}{{Personal Development Plan}}{ix}{chapter*.4}%
