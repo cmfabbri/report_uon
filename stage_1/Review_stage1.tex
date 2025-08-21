@@ -145,82 +145,86 @@ Several attempts have been made in this direction, from architectures that model
 Let us refer to the vector of binary parameters as $\theta$. It consists of intrinsic parameters, such as the masses and the spins, and extrinsic parameters, such as the redshift and the binary orientation.
 The goal of the analysis is to infer the posterior distribution $p(\theta|d)$, which associates to each point in the binary-parameter space the probability of that binary to generate the observed data $d$. 
 Observed data is the sum of the astrophysical signal, which is assumed to be deterministic and a function of binary-parameters, and a noise realization in the detector, which is assumed to be stochastic.
-To evaluate the posterior one needs a prior $\pi(\theta)$ and a Likelihood $\mathcal{L}(d|\theta)$.
+To infer the posterior one needs a prior $\pi(\theta)$ and a Likelihood $\mathcal{L}(d|\theta)$.
 The prior is the probability distribution that an event with parameters $\theta$ takes place in the Universe. 
-A possiblility is to use knowledge from theory or previous experiments to build it.
-Nevertheless, the preferred approach is often conservative, and uninformative priors are used.
-These priors have constant probability in the binary-parameters dominium and zero outside.
+A possible approach to build is based on theory or previous experiments .
+Nevertheless, the preferred approach is often conservative, and uninformative priors are used, such as priors with constant probability in the binary-parameters dominium and zero outside.
 The Likelihood is the probability in the data space, given $\theta$ parameters.
-To evaluate the Likelihood one needs to generate waveforms for $\theta$, and a noise model, which is often assumed to be stationary and Gaussian.
+To evaluate the Likelihood one needs to generate waveforms for $\theta$ and a noise model.
+To build the noise model one often assumes that noise is stationary and Gaussian.
 % non mi piace questa frase
 Bayes theorem links the posterior to the prior and the Likelihood:
 \begin{equation}
-p(\theta|d) \propto \pi(\theta) \times \mathcal{L}(d|\theta).
+\label{eq: post}
+p(\theta|d) = \frac{ \pi(\theta) \times \mathcal{L}(d|\theta)}{p(d)}.
 \end{equation}
+% non mi piace links in questo contesto
+The term $p(d)$ is called evidence, and it is the probability of observing the data $d$ under the assumed model, which is often general relativity.
+The evidence is defined as
+\begin{equation}
+p(d) = \int\textrm{d}\theta \pi(\theta) \times \mathcal{L}(d|\theta).
+\end{equation}
+The evidence is a normalization factor and does not influence the posterior shape.
+For this reason one does not compute it during inference, except when doing model comparison.
+
+
 \end{section}
 
 
 \begin{section}{Hierarchical Bayesian statistics}
+The goal of population analysis is to infer how binary parameters are distributed at the population level. 
+To do so, one parametrizes the distribution of binary parameters with the population parameters $\lambda$, that will determine the shape of the distribution. 
+Examples of hyperparameters are the slope of the binary black hole (BBH) mass distribution, the minimum and maximum mass of stellar-mass black holes.
+The prior on binary parameters is conditioned on the population parameters, and we refer to it as the population model $p_{\rm pop}(\theta|\lambda)$.
+For the analysis one needs the prior on population parameters $\pi(\lambda)$.
+
+The choice of the population model is crucial, and several approaches have been proposed to construct it.
+The state of the art are parametric models, which are based on easy to evaluate parametric forms built based on a qualitative astrophysical motivation.
+Other approaches move towards highly flexible models, called semi-parametric or non-parametric models, where the hyperparameters are for instance spline perturbations. These models allow for data-driven fits but the results are difficult to interpret physically.
+Moving towards astrophysical approaches, other attempts include comparing data with the output of simulations that synthesize binary populations.
+
+In population analysis one needs to take into account selection effects.
+Since the events have different probabilities to be detected, the observed population is biased.
+An event is considered detectable if data exceeds some threshold.
+The detection probability for an event is thus defined as
+\begin{equation}
+p_{\rm det}(\theta) = \int_{d>treshold} \textrm{d}d p(d|\theta).
+\end{equation}
+
+Let us refer to the dataset of observed events as $d$ and to individual events as $d_{i}$, with $i=1, ..., N_{\rm obs}$, where $N_{\rm obs}$ number of observed events.
+The posterior for the astrophysical distribution, called hyperposterior, is:
+\begin{equation}
+\label{eq: hyperpost}
+p(\lambda|d) = \frac{\pi(\lambda)}{p(d)} \prod_{i=1}^{N_{\rm obs}}\frac{\int \textrm{d}\theta \mathcal{L}(d_{i}|\theta)p_{\rm pop}(\theta|\lambda)}{\int \textrm{d}\theta p_{\rm pop}(\theta|\lambda)p_{\rm det}(\theta)},
+\end{equation}
+with $\mathcal{L}(d_{i}|\theta)$ the likelihood of individual events in Eq.~\ref{eq: post}.
+The term $p(d)$ is the hyperevidence, and it is the probability of the observed dataset under the assumed population model, i.e.:
+\begin{equation}
+p(d)=\int \textrm{d}\lambda'  \pi(\lambda') \prod_{i=1}^{N_{\rm obs}} \mathcal{L}(d_{i}|\lambda'),
+\end{equation}
+with the likelihood respect to the hyperparameters $\mathcal{L}(d_{i}|\lambda')$ being linked to the individual-event likelihood through
+\begin{equation}
+\mathcal{L}(d_{i}|\lambda') = \int \textrm{d}\theta\mathcal{L}(d_{i}|\theta)p_{\rm pop}(\theta|\lambda).
+\end{equation}
+The hyperevidence is often computed in population analysis to compare different population models and their goodness in describing the observed dataset. 
+
+Population analysis is divided in two steps.
+First, individual events are analyzed with Bayesian statistics. 
+Then, one uses the individual-event posteriors and the assumed population model to infer the hyperposterior in Eq.~\ref{eq: hyperpost}.
+
+
+
+
+
+
 
 \end{section}
 
-\begin{comment}
-When emitted, they travel through the Universe carrying pristine information on the event producing them.
-
-Since the amplitude of the wave and its evolution depend on the properties of the system, with data analysis we can infer the properties of the system producing the detected wave.
-
--The following part is not too much impo for my work, so don't deepen it too much-
-The first challenge is the detection of signals of astrophysical origin. 
-If we consider a binary with ... (add some properties such as mass etc), then the relative change in the length of arms of the interferometer is $\sim 10^{-21}$, which, for a typical intereferometer arm of $5 km$, is ... cms, i.e. x orders of magnitude smaller than the size of an atom (check).
-With such a small amplitude of astrophysical signal, the output signal is dominated by noise. 
-The procedure LVK uses to detect signals strongly relies on accurate modelling the gravitational-wave signals we are looking for, and then use the models to build filters.
-To assess how confident we are that a segment of filtered data contains astrophysical signal, typically one defines a metric such as the signal to noise ratio (SNR) or the false alarm rate (FAR). 
-Then one sets a threshold on the metric to decide when to analyze data as containing an event.
+\begin{section}{Simulation based inference}
+Traditional methods that use stochastic sampling infer the posterior by (i) drawing events randomly from the prior and (ii) evaluating the Likelihood.
+\end{section}
 
 
-
-
-\end{comment}
-
-
-
-\begin{comment}
-Once an astrophysical signal is detected in a data segment, the following step is to analyze the data and with the goal of inferring the properties of the event producing that signal. 
-
-In the signal-detection step, one uses the gravitational-wave signals expected in case of binary mergers to build filters. 
-For this reason, during data analysis, we assume that the signal detected comes from a binary merger. (Don't like the for this reason part)
-We refer to the parameters used to parametrize binary systems as $\theta$. 
-Those are for instance the masses, spins, redshift, sky location parameters.
-The output signal $d$ is:
-\begin{equation}
-d = h(\theta) + n,
-\end{equation}
-where n is the noise realization and $h(\theta)$ the gravitational signal produced by a binary with parameters $\theta$.
-The ultimate goal of the analysis is to infer the posterior, $p(\theta|d)$, which is the probability in the binary-parameter space $\theta$ of generating the observed data $d$.
-The Bayes theorem allows us to rewrite the posterior as a function of two distributions that we can evaluate, the Likelihood $\mathcal{L}(d|\theta)$ and the prior $ \pi(\theta)$:
-\begin{equation}
-p(\theta|d) \propto \pi(\theta) \times \mathcal{L}(d|\theta).
-\end{equation}
-The prior is the probability distribution that formalizes our knowledge on binary parameters.
-Informative priors are built based on theory or previous experiments.
-For instance, if we know the distribution of galaxies from electromagnetic observations, we can use this information to build a prior for localization parameters.
-Often one prefers a conservative approach using uninformative priors, with uniform probability in the binary-parameters dominium and zero outside.
-The prior depends on the physics only, and not on our detector properties.
-The Likelihood is a distribution over data, and contains information on the possible detector outputs given an event with parameters $\theta$.
-To evaluate the likelihood can be evaluated assuming a noise model and a waveform model.
-
-
-
-
-
-
----------
-
-(Noise is not deterministic, which means we don't care its value at t but we care about is statistical properties -> better to go in the fourier domain. We assume it is gaussian, stochastic and stationary. This means it is completely defined by its autocorrel function and its average)
-----------
-
-in analyses we need models to evaluate the likelihood -> expensive
-\end{comment}
 
 
 
