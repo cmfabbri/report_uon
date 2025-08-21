@@ -120,14 +120,16 @@ To do so, one uses Hierarchical Bayesian statistics.
 The models used have multi-dimensional parameters, resulting in probability distributions computationally prohebitive. 
 % this sentence is strange, say the problem is the integral
 Traditional methods rely on stochastic sampling methods, such as Markov Chain Monte Carlo (MCMC) or Nested sampling, to infer the probability distribution.
-However powerful, these methods are expensive, as probability distributions have to be evaluated million of times for each individual event analysis. 
+However powerful, these methods are expensive, as probability distributions have to be evaluated iteratively million of times for each individual event analysis. 
 % look for citations
 % do we have numbers for populations?
 Each evaluation requires to generate a waveform on the fly, which heavily contributes to the overall costs.
 % check if true
 % si puo dire on the fly su un documento di questo tipo?
-Machine learning approaches have the advantage of moving most of the costs in the training stage, dramatically speeding up inference time.
-Several attempts have been made in this direction, from architectures that model the noise more realistically than traditional methods, to architectures that employ models without an analytical expression, which is unfeasible with stochastic samplers.
+Machine learning approaches have the advantage of moving most of the costs 
+%offline
+in the training stage, dramatically speeding up inference time, which is crucial for multimessanger astronomy.
+Several attempts have been made in this direction, from architectures that model the noise more realistically than traditional methods, to architectures that employ complex physical models without an analytical expression, which is unfeasible with stochastic samplers.
 % sei sicura?
 
 \begin{comment}
@@ -176,7 +178,7 @@ The goal of population analysis is to infer how binary parameters are distribute
 To do so, one parametrizes the distribution of binary parameters with the population parameters $\lambda$, that will determine the shape of the distribution. 
 Examples of hyperparameters are the slope of the binary black hole (BBH) mass distribution, the minimum and maximum mass of stellar-mass black holes.
 The prior on binary parameters is conditioned on the population parameters, and we refer to it as the population model $p_{\rm pop}(\theta|\lambda)$.
-For the analysis one needs the prior on population parameters $\pi(\lambda)$.
+For the analysis one needs the prior on population parameters, called hyperprior, $\pi(\lambda)$.
 
 The choice of the population model is crucial, and several approaches have been proposed to construct it.
 The state of the art are parametric models, which are based on easy to evaluate parametric forms built based on a qualitative astrophysical motivation.
@@ -212,16 +214,64 @@ Population analysis is divided in two steps.
 First, individual events are analyzed with Bayesian statistics. 
 Then, one uses the individual-event posteriors and the assumed population model to infer the hyperposterior in Eq.~\ref{eq: hyperpost}.
 
-
-
-
-
-
-
 \end{section}
 
+
+
 \begin{section}{Simulation based inference}
-Traditional methods that use stochastic sampling infer the posterior by (i) drawing events randomly from the prior and (ii) evaluating the Likelihood.
+%Traditional methods that use stochastic sampling infer the posterior by (i) drawing events randomly from the prior and (ii) evaluating the Likelihood.
+%One can use deep learning to model complex probability distributions.
+Simulation-based inference (SBI) is a deep learning technique to approximate a probability distribution using simulated data.
+I am working with the DINGO code, which uses SBI to model a posterior.
+To simulate data, we need to draw samples from the prior and the likelihood.
+Contrarily to traditional methods, the likelihood is not evaluated and an analytical expression is not necessary. 
+In principle, more complex models can be used, for instance dropping the stationary and gaussian noise assumption or using waveforms from simulations.
+
+
+Normalizing flows are often used in SBI to approximate complex distributions.
+A normalizing flow is a mapping from a simple $\pi(u)$ to an approximation of the posterior $q_{\phi}(\theta|d)$, with $\phi$ parameters of the mapping. 
+The mapping $f_{\phi}(u)$ must be invertible and with a simple Jacobian determinant, so that:
+\begin{equation}
+\label{eq: nf}
+q_{\phi}(\theta|d) = \pi(f_{\phi}^{-1}(\theta))|\textrm{det}J_{f_{\phi}}^{-1}|.
+\end{equation}
+% long |
+% what is the dependence of the flow on data?
+% add phi and explain
+To evaluate $q_{\phi}(\theta|d)$ one uses Eq.~\ref{eq: nf}. Drawing samples from $q_{\phi}(\theta|d)$ is equivalent to drawing $u\sim\pi(u)$ and transforming $\theta=f_{\phi}(u)$.
+Often one chooses the base distribution $\pi(u)$ is a multivariate standard normal.
+In the case of DINGO code, the flow $f_{\phi}$ is a sequence of transforms $f_{\phi}^{(i)}$, so that
+\begin{equation}
+f_{\phi}^{i}(u) = u_{i} if i\leq d/2, c_{i}(u_{i}; u_{1:d, d}) if i> d/2,
+\end{equation}
+so that half of the latent variables $u$ are unchanged while the other half is transformed.
+At each $f_{\phi}^{(i)}$ the indices of the $u$ that transform and that do not are permuted.
+The transformation is the neural spline coupling transform $c_{i}$, whose parameters depend on the unchanged $u_{i}$ and on data strain $d$.
+
+During training the neural network learns the mapping by learning the $\phi$ parameters that minimize a chosen loss function.
+
+% loss functions
+The loss function used in DINGO is:
+\begin{equation}
+L = \frac{-1}{N}
+\end{equation}
+
+% mettici una graffona
+% say explicetly that the flow is the network
+CAPIRE MEGLIO E RISPIEGARE.
+
+
+
+
+
+
+
+
+- we need to draw from the likelihood -> can use non-analytical models
+- faster because we do all at the beginning and then tada (gia' detto nell'intro)
+
+
+
 \end{section}
 
 

@@ -4,6 +4,6 @@
 \contentsline {section}{\numberline {0.1}{Bayesian statistics}}{iv}{section.0.1}%
 \contentsline {section}{\numberline {0.2}{Hierarchical Bayesian statistics}}{v}{section.0.2}%
 \contentsline {section}{\numberline {0.3}{Simulation based inference}}{vi}{section.0.3}%
-\contentsline {chapter}{{Completed Work}}{vii}{chapter*.2}%
-\contentsline {chapter}{{Work Plan}}{ix}{chapter*.3}%
-\contentsline {chapter}{{Personal Development Plan}}{xi}{chapter*.4}%
+\contentsline {chapter}{{Completed Work}}{ix}{chapter*.2}%
+\contentsline {chapter}{{Work Plan}}{xi}{chapter*.3}%
+\contentsline {chapter}{{Personal Development Plan}}{xiii}{chapter*.4}%

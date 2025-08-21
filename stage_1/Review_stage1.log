@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.10)  21 AUG 2025 11:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.10)  21 AUG 2025 18:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1072,20 +1072,23 @@ Package scrlayer-scrpage Warning: \footheight to low.
 
 ] [2
 
-] Excluding 'comment' comment. [3] Excluding 'comment' comment. [4]
-Underfull \vbox (badness 1253) has occurred while \output is active []
+] Excluding 'comment' comment. [3] Excluding 'comment' comment.
+Underfull \vbox (badness 6016) has occurred while \output is active []
+
+ [4]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/pplj/m/sc/10.95'.
 (microtype)             Ignoring protrusion settings for this character.
  [5]
-[6] [7
-
-] [8
+[6] [7] [8
 
 ] [9] [10
 
 ] [11] [12
+
+] [13] [14
 
 ]
 No file Review_stage1.bbl.
@@ -1098,13 +1101,13 @@ Package rerunfilecheck Info: File `Review_stage1.out' has not changed.
 (rerunfilecheck)             Checksum: CED284F2561FF81FD51F23261BF13C89;1081.
  ) 
 Here is how much of TeX's memory you used:
- 23636 strings out of 474116
- 406446 string characters out of 5743681
+ 23652 strings out of 474116
+ 406608 string characters out of 5743681
  1938187 words of memory out of 5000000
- 45350 multiletter control sequences out of 15000+600000
- 637675 words of font info for 298 fonts, out of 8000000 for 9000
+ 45353 multiletter control sequences out of 15000+600000
+ 639241 words of font info for 305 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 123i,23n,121p,1010b,790s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 123i,23n,121p,1010b,767s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 ></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
@@ -1114,10 +1117,10 @@ cal/texlive/2024/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/
 texlive/2024/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/
 2024/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2024/te
 xmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on Review_stage1.pdf (14 pages, 108972 bytes).
+Output written on Review_stage1.pdf (16 pages, 115284 bytes).
 PDF statistics:
- 164 PDF objects out of 1000 (max. 8388607)
- 128 compressed objects within 2 object streams
- 28 named destinations out of 1000 (max. 500000)
+ 177 PDF objects out of 1000 (max. 8388607)
+ 139 compressed objects within 2 object streams
+ 33 named destinations out of 1000 (max. 500000)
  67641 words of extra memory for PDF output out of 74296 (max. 10000000)
 
