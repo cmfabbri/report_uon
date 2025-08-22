@@ -233,7 +233,7 @@ A normalizing flow is a mapping from a simple $\pi(u)$ to an approximation of th
 The mapping $f_{\phi}(u)$ must be invertible and with a simple Jacobian determinant, so that:
 \begin{equation}
 \label{eq: nf}
-q_{\phi}(\theta|d) = \pi(f_{\phi}^{-1}(\theta))|\textrm{det}J_{f_{\phi}}^{-1}|.
+q_{\phi}(\theta|d) = \pi(f_{\phi}^{-1}(\theta))\left|\textrm{det}J_{f_{\phi}}^{-1}\right|.
 \end{equation}
 % long |
 % what is the dependence of the flow on data?
@@ -242,40 +242,57 @@ To evaluate $q_{\phi}(\theta|d)$ one uses Eq.~\ref{eq: nf}. Drawing samples from
 Often one chooses the base distribution $\pi(u)$ is a multivariate standard normal.
 In the case of DINGO code, the flow $f_{\phi}$ is a sequence of transforms $f_{\phi}^{(i)}$, so that
 \begin{equation}
-f_{\phi}^{i}(u) = u_{i} if i\leq d/2, c_{i}(u_{i}; u_{1:d, d}) if i> d/2,
+f_{\phi}^{i}(u) = 
+\begin{cases}
+u_{i} & \text{if } i\leq d/2 \\
+c_{i}(u_{i}; u_{1:{d/2}},d) & \text{if } i> d/2
+\end{cases},
 \end{equation}
 so that half of the latent variables $u$ are unchanged while the other half is transformed.
 At each $f_{\phi}^{(i)}$ the indices of the $u$ that transform and that do not are permuted.
 The transformation is the neural spline coupling transform $c_{i}$, whose parameters depend on the unchanged $u_{i}$ and on data strain $d$.
 
-During training the neural network learns the mapping by learning the $\phi$ parameters that minimize a chosen loss function.
-
-% loss functions
-The loss function used in DINGO is:
+During training the neural network learns the mapping by learning which $\phi$ minimize the loss function.
+Typically in these problems loss functions are built based on the Kullback-Leibler divergence, which is defined as:
 \begin{equation}
-L = \frac{-1}{N}
+D_{\rm KL}(p||q_{\phi}) = \int \textrm{d}\theta p(\theta|d) \log{\frac{p(\theta|d)}{q_{\phi}(\theta|d)}},
 \end{equation}
+which vanishes as the approximant gets similar to the posterior.
+Since the approximant of the mapping should not depend on the individual data, the loss function will be the expectation value over $p(d)$ of $D_{\rm KL}(p||q_{\phi})$:
+\begin{equation}
+L  = \int \textrm{d}{d}p(d)\int \textrm{d}\theta p(\theta|d) \log{\frac{p(\theta|d)}{q_{\phi}(\theta|d)}}.
+\end{equation}
+Using Bayes Theorem one gets:
+\begin{equation}
+L  \simeq - \int \textrm{d}\theta \pi(\theta) \int\textrm{d}{d} p(d|\theta)\log{q_{\phi}(\theta|d)}, 
+\end{equation}
+where the posterior at the nominator in the logarithm can be omitted since the minimization over $\phi$ does not depend on the true posterior.
+Simulating events is equivalent to drawing $N$ events from the prior, $\theta_{i}\sim \pi(\theta)$, and then data from the likelihood $d_{i} \sim p(d|\theta_{i})$, with $i=1,...,N$.
+The loss used is then
+\begin{equation}
+L = - \frac{1}{N} \sum_{i} \log{q_{\phi}(\theta|d)},
+\end{equation}
+where monte carlo (MC) sums have been used to approximate the integrals.
+% quote mc sums, dingo
 
-% mettici una graffona
-% say explicetly that the flow is the network
-CAPIRE MEGLIO E RISPIEGARE.
-
-
-
-
-
-
-
-
-- we need to draw from the likelihood -> can use non-analytical models
-- faster because we do all at the beginning and then tada (gia' detto nell'intro)
+DINGO architecture consists of an embedding network that compresses data strains before passing them to the flow. 
+The embedding is trained together with the flow. 
+During training the network learns how to compress data, i.e. what are the most important features in the data.
+% say that it's a residual network
 
 
 
 \end{section}
 
+\begin{section}{growing pains}
+SCRIVI QUALCOSA SU SBI PER POP
+- similar process
+- simulated data and then you apply selection effects
+- problem: training can be very expensive/unfeasible
+- maybe can solve the groweing pains problem
+MAGARI SEZIONE CHIAMATA GROWING PAINS?
 
-
+\end{section}
 
 
 
@@ -291,14 +308,80 @@ CAPIRE MEGLIO E RISPIEGARE.
 \end{chapter}
 
 \begin{chapter}{Completed Work}
-a descripiton of work completed to date
-- small project description
-
 Transfer learning is a series of techniques used in machine learning to transfer knowledge from a neural network to another.
-Each time one modifies a neural network, for instance changing the model assumed in the analysis, the neural network needs to be trained again. 
-The goal of transfer learning is to fine tune a new training run using some knowledge acquired during a previous training.
 These strategies allow to reduce training time, and, more importantly, could even improve the results respect to training the new run without any information from previous trainings. 
 
+My first projects regards testing transfer learning with DINGO for individual events analysis, following the multifidelity approach in Ref.~\ref{}.
+The typical training dataset size to have well-trained NNs in DINGO is of the order of $10^{6}$ simulations.
+Let us consider two waveform models.
+An high-fidelity model is an accurate but expensive model, with prohibitive costs that limit the simulation size under the typical order of magnitude (e.g. numerical relativity simulations).
+% frase un po' sgrammaticata, sistema
+We also consider a low-fidelity model, less accurate and cheap, and in this case we easily simulate $10^{6}$ data.
+Assuming the architecture of the flow in the two cases is the same, we fine tune the training for the high-fidelity model using the network parameters optimized during the low-fidelity training run.
+The NN for the high-fidelity model reaches higher performances when pretrained, partially inheriting knowledge acquired in the low-fidelity training run.
+
+With this strategy one can analyze events with waveform models never used before, opening a window to analyses with, for instance, beyond general relativity (GR) models, or with precessing and eccentric waveforms.
+Another interesting application is population analyses, where one could use population-synthesis codes to simulate the dataset. 
+This would allow to do inference directly on astrophysical processes, as the population parameters would be the input parameters of the codes, e.g. the supernova kick strength, common-envelope efficiency, metallicity, and winds strength.
+
+
+\begin{section}{Diagnostics to check the performance of the neural network}
+
+There are many diagnostic to check the quality of the posterior approximant.
+
+The evolution of the loss function gives us information on how the training is proceeding.
+When training a NN, the dataset is split into a training set and validation set. 
+The training set is used to update parameters of the NN to minimize the loss.
+The validation set is used to compute the loss when parameters are updated, thus checking how the NN is performing on unseen data.
+A sanity check consists in making sure that the validation and training loss to decrease together during training.
+When training is finished they should get to a plateau.
+
+Once training is finished, we can test the approximant using injections.
+We use pp-plots to test the one-dimensional marginal posteriors.
+For each one-dimensional marginal of $q_{\phi}(\theta|d)$, one expects the cumulative distribution of the percentiles of true parameters to align to a diagonal as the approximant gets closer to the true posterior marginals.
+Importance sampling tests how close $q_{\phi}(\theta|d)$ and $p(\theta|d)$ are in multiple dimensions.
+One can associate weights $w_{i}$ to samples $\theta_{i}\sim q_{\phi}(\theta|d)$:
+\begin{equation}
+w_{i} \propto \frac{\pi(\theta_{i})p(d|\theta_{i})}{q_{\phi}(\theta_{i}|d)}.
+\end{equation}
+The variance of weights gives the sampling efficiency
+\begin{equation}
+\epsilon = \frac{\left(\sum_{i}w_{i}\right)^{2}}{n\sum_{i}w_{i}^{2}}.
+\end{equation}
+Smaller values of $\epsilon$ correspond to poorer posterior approximations.
+
+\end{section}
+
+
+\begin{section}{From non-spinning to aligned-spins model}
+To test the multifidelity procedure, we use a non-spinning waveform as low fidelity model, while the high-fidelity model has aligned spins.
+The approximant used to generate waveforms is IMRPhenomXPHM.
+% cita IMRPhenomXPHM
+
+The size of the simulations for the low-fidelity model is $5\times10^6$, with a split of $95\%$ training set and $5\%$ validation set. For the high fidelity model, we generate multiple datasets, with size $5\times10^6$, $5\times10^5$, $5\times10^4$, and $8192$. In the first three cases the split is the same as in the low-fidelity case, while in the latter case we split the dataset in two halves.
+For some of these runs, we do an additional training where we pretrain the embedding only.
+We explore this case as it would improve the high-fidelity flexibility, allowing us to use pretraining while changing the flow architecture.
+
+\begin{figure}
+\includegraphics[width=0.97\columnwidth]{figures/val_loss.pdf}
+\caption{}
+\label{loss}
+\end{figure}
+
+
+%\begin{figure*}[]
+   %\includegraphics[width=0.95\columnwidth]{ps2pp.pdf}
+%   $\qquad$
+%\includegraphics[width=0.95\columnwidth]{ps2pl.pdf} 
+ % \caption{}
+ %  \label{ppopplot}
+%\end{figure*}
+
+
+
+
+
+\end{section}
 
 
 
