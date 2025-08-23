@@ -8,5 +8,5 @@
 \contentsline {chapter}{{Completed Work}}{ix}{chapter*.2}%
 \contentsline {section}{\numberline {0.5}{Diagnostics to check the performance of the neural network}}{x}{section.0.5}%
 \contentsline {section}{\numberline {0.6}{From non-spinning to aligned-spins model}}{x}{section.0.6}%
-\contentsline {chapter}{{Work Plan}}{xiii}{chapter*.4}%
-\contentsline {chapter}{{Personal Development Plan}}{xv}{chapter*.5}%
+\contentsline {chapter}{{Work Plan}}{xv}{chapter*.6}%
+\contentsline {chapter}{{Personal Development Plan}}{xvii}{chapter*.7}%

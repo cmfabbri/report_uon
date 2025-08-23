@@ -336,11 +336,14 @@ The validation set is used to compute the loss when parameters are updated, thus
 A sanity check consists in making sure that the validation and training loss to decrease together during training.
 When training is finished they should get to a plateau.
 
-Once training is finished, we can test the approximant using injections.
+%Once training is finished, we can test the approximant using injections.
+\begin{comment}
 We use pp-plots to test the one-dimensional marginal posteriors.
 For each one-dimensional marginal of $q_{\phi}(\theta|d)$, one expects the cumulative distribution of the percentiles of true parameters to align to a diagonal as the approximant gets closer to the true posterior marginals.
+\end{comment}
 Importance sampling tests how close $q_{\phi}(\theta|d)$ and $p(\theta|d)$ are in multiple dimensions.
-One can associate weights $w_{i}$ to samples $\theta_{i}\sim q_{\phi}(\theta|d)$:
+During inference one draws samples $\theta_{i}$ from the approximant of the posterior $\theta_{i}\sim q_{\phi}(\theta|d)$.
+One can associate to each $\theta_{i}$ the a weight $w_{i}$:
 \begin{equation}
 w_{i} \propto \frac{\pi(\theta_{i})p(d|\theta_{i})}{q_{\phi}(\theta_{i}|d)}.
 \end{equation}
@@ -351,7 +354,6 @@ The variance of weights gives the sampling efficiency
 Smaller values of $\epsilon$ correspond to poorer posterior approximations.
 
 
-MAGARI TOGLI PP PLOTS
 \end{section}
 
 
@@ -361,23 +363,29 @@ The approximant used to generate waveforms is IMRPhenomXPHM.
 % cita IMRPhenomXPHM
 
 The size of the simulations for the low-fidelity model is $5\times10^6$, with a split of $95\%$ training set and $5\%$ validation set. For the high fidelity model, we generate multiple datasets, with size $5\times10^6$, $5\times10^5$, $5\times10^4$, and $8192$. In the first three cases the split is the same as in the low-fidelity case, while in the latter case we split the dataset in two halves.
-For some of these runs, we do an additional training where we pretrain the embedding only.
-We explore this case as it would improve the high-fidelity flexibility, allowing us to use pretraining while changing the flow architecture.
+For the case $\sim10^{6}$ and $\sim10^{3}$ simulations, we do an additional training where we pretrain the embedding only.
+Results for pretraining only the embedding are preliminary.
+We aim to explore this alternative as it would improve the high-fidelity flexibility, allowing us to use pretraining while changing the flow architecture.
 
 \begin{figure}
-\includegraphics[width=0.97\columnwidth]{figures/val_loss.pdf}
+\includegraphics[width=1.\columnwidth]{figures/val_loss.pdf}
 \caption{}
 \label{loss}
 \end{figure}
 
+\begin{figure}
+\includegraphics[width=1.2\columnwidth]{figures/cornerplots.pdf}
+\caption{}
+\label{cp}
+\end{figure}
 
-%\begin{figure*}[]
-   %\includegraphics[width=0.95\columnwidth]{ps2pp.pdf}
-%   $\qquad$
-%\includegraphics[width=0.95\columnwidth]{ps2pl.pdf} 
- % \caption{}
- %  \label{ppopplot}
-%\end{figure*}
+\begin{figure}
+\includegraphics[width=1.1\columnwidth]{figures/neff.pdf}
+\caption{}
+\label{eff}
+\end{figure}
+
+
 
 
 
