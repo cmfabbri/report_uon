@@ -367,9 +367,18 @@ For the case $\sim10^{6}$ and $\sim10^{3}$ simulations, we do an additional trai
 Results for pretraining only the embedding are preliminary.
 We aim to explore this alternative as it would improve the high-fidelity flexibility, allowing us to use pretraining while changing the flow architecture.
 
+Figure ~\ref{loss} shows the evolution during training time of the validation-set loss functions.
+In the two cases with higher number of simulations ($\sim 10^{6}$ and $\sim 10^{5}$), pretraining both the embedding and the flow does not greatly influence the values of the loss plateau. The biggest difference between this pretraining and training from scratch is the time it takes to plateau, resulting in lower computational costs when pretraining.
+With limited simulation budgets instead ($\sim 10^{4}$ and $\sim 10^{3}$), pretraining pushes the loss to lower values than traditional training.
+Pretraining the embedding with $\sim10^{6}$ simulations allows us to get to slightly lower loss functions than training from scratch.
+When considering $\sim10^{3}$ simulations, this strategy improves the results of traditional training but does not reach results as good as when pretraining both the embedding and the flow.
+
+
+% better results does not mean good results -> check neff
+
 \begin{figure}
 \includegraphics[width=1.\columnwidth]{figures/val_loss.pdf}
-\caption{}
+\caption{Evolution of the validation loss as a function of training time. The number of epochs is the number of times the full training set passes through the neural network. The top two panels show losses for the traditional training (blue) and pretraining both the embedding and the flow (orange) for $\sim10^{5}$ (left) and $\sim10^{4}$ (right) simulations. The two lower panels show the validation losses for  $\sim10^{6}$ (left) and $\sim10^{3}$ (right). Additionally to the previous cases, results are shown for pretraining the embedding only (green)}
 \label{loss}
 \end{figure}
 

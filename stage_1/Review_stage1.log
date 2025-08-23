@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.10)  23 AUG 2025 17:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.10)  23 AUG 2025 17:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1093,35 +1093,35 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ]
 Excluding 'comment' comment. [10]
-<figures/val_loss.pdf, id=131, 1089.41661pt x 643.20299pt>
+<figures/val_loss.pdf, id=132, 1088.93042pt x 643.20299pt>
 File: figures/val_loss.pdf Graphic file (type pdf)
 <use figures/val_loss.pdf>
-Package pdftex.def Info: figures/val_loss.pdf  used on input line 371.
-(pdftex.def)             Requested size: 412.56497pt x 243.57562pt.
-<figures/cornerplots.pdf, id=132, 1611.21945pt x 1611.21945pt>
+Package pdftex.def Info: figures/val_loss.pdf  used on input line 380.
+(pdftex.def)             Requested size: 412.56497pt x 243.6934pt.
+<figures/cornerplots.pdf, id=133, 1611.21945pt x 1611.21945pt>
 File: figures/cornerplots.pdf Graphic file (type pdf)
 <use figures/cornerplots.pdf>
-Package pdftex.def Info: figures/cornerplots.pdf  used on input line 377.
+Package pdftex.def Info: figures/cornerplots.pdf  used on input line 386.
 (pdftex.def)             Requested size: 495.0767pt x 495.07213pt.
 
-Overfull \hbox (82.51173pt too wide) in paragraph at lines 377--378
+Overfull \hbox (82.51173pt too wide) in paragraph at lines 386--387
 [][] 
  []
 
-<figures/neff.pdf, id=133, 1119.12906pt x 1063.29239pt>
+<figures/neff.pdf, id=134, 1119.12906pt x 1063.29239pt>
 File: figures/neff.pdf Graphic file (type pdf)
 <use figures/neff.pdf>
-Package pdftex.def Info: figures/neff.pdf  used on input line 383.
+Package pdftex.def Info: figures/neff.pdf  used on input line 392.
 (pdftex.def)             Requested size: 453.82397pt x 431.16647pt.
 
-Overfull \hbox (41.259pt too wide) in paragraph at lines 383--384
+Overfull \hbox (41.259pt too wide) in paragraph at lines 392--393
 [][] 
  []
 
-[11 <./figures/val_loss.pdf>] [12 <./figures/cornerplots.pdf>] [13 <./figures/n
-eff.pdf>] [14
+[11] [12 <./figures/val_loss.pdf>] [13 <./figures/cornerplots.pdf>] [14 <./figu
+res/neff.pdf>] [15
 
-] [15] [16
+] [16
 
 ] [17] [18
 
@@ -1136,15 +1136,18 @@ L3 programming layer <2024-02-20>
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `Review_stage1.out' has not changed.
 (rerunfilecheck)             Checksum: 51AA1545DAFC63547469D68EB2A89B00;1841.
  ) 
 Here is how much of TeX's memory you used:
- 23756 strings out of 474116
- 408190 string characters out of 5743681
+ 23785 strings out of 474116
+ 408436 string characters out of 5743681
  1940187 words of memory out of 5000000
  45396 multiletter control sequences out of 15000+600000
- 642658 words of font info for 339 fonts, out of 8000000 for 9000
+ 645267 words of font info for 364 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  123i,23n,123p,1010b,767s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
@@ -1157,10 +1160,10 @@ texlive/2024/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/
 2024/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2024/te
 xmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2024/texmf-dis
 t/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on Review_stage1.pdf (20 pages, 2212950 bytes).
+Output written on Review_stage1.pdf (20 pages, 2214949 bytes).
 PDF statistics:
- 429 PDF objects out of 1000 (max. 8388607)
- 231 compressed objects within 3 object streams
+ 430 PDF objects out of 1000 (max. 8388607)
+ 232 compressed objects within 3 object streams
  48 named destinations out of 1000 (max. 500000)
  73824 words of extra memory for PDF output out of 74296 (max. 10000000)
 
