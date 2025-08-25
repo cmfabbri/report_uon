@@ -1,7 +1,6 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.10)  23 AUG 2025 17:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.10)  25 AUG 2025 14:16
 entering extended mode
  restricted \write18 enabled.
- file:line:error style messages enabled.
  %&-line parsing enabled.
 **Review_stage1.tex
 (./Review_stage1.tex
@@ -1072,95 +1071,98 @@ Package scrlayer-scrpage Warning: \footheight to low.
 
 ] [2
 
-] Excluding 'comment' comment. [3] Excluding 'comment' comment.
-Underfull \vbox (badness 6016) has occurred while \output is active []
-
- [4]
+] Excluding 'comment' comment. [3]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+ [4]
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/pplj/m/sc/10.95'.
 (microtype)             Ignoring protrusion settings for this character.
- [5]
-[6] [7] [8]
 
-LaTeX Warning: Reference `' on page ix undefined on input line 314.
+[5] [6] [7] [8]
+Overfull \hbox (8.59369pt too wide) in paragraph at lines 296--303
+[]\T1/pplj/m/n/12 (-20) My first projects in-volves test-ing trans-fer learn-in
+g with DINGO for individual-
+ []
 
+Excluding 'comment' comment. [9
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [9
-
-]
-Excluding 'comment' comment. [10]
-<figures/val_loss.pdf, id=132, 1088.93042pt x 643.20299pt>
+] [10]
+<figures/val_loss.pdf, id=220, 1088.93042pt x 643.20299pt>
 File: figures/val_loss.pdf Graphic file (type pdf)
 <use figures/val_loss.pdf>
-Package pdftex.def Info: figures/val_loss.pdf  used on input line 380.
+Package pdftex.def Info: figures/val_loss.pdf  used on input line 377.
 (pdftex.def)             Requested size: 412.56497pt x 243.6934pt.
-<figures/cornerplots.pdf, id=133, 1611.21945pt x 1611.21945pt>
+<figures/cornerplots.pdf, id=221, 1611.21945pt x 1611.21945pt>
 File: figures/cornerplots.pdf Graphic file (type pdf)
 <use figures/cornerplots.pdf>
-Package pdftex.def Info: figures/cornerplots.pdf  used on input line 386.
+Package pdftex.def Info: figures/cornerplots.pdf  used on input line 383.
 (pdftex.def)             Requested size: 453.82397pt x 453.81816pt.
 
-Overfull \hbox (41.259pt too wide) in paragraph at lines 386--387
+Overfull \hbox (41.259pt too wide) in paragraph at lines 383--384
 [][] 
  []
 
-<figures/neff.pdf, id=134, 1119.12906pt x 1063.29239pt>
+<figures/neff.pdf, id=222, 1119.12906pt x 1063.29239pt>
 File: figures/neff.pdf Graphic file (type pdf)
 <use figures/neff.pdf>
-Package pdftex.def Info: figures/neff.pdf  used on input line 392.
+Package pdftex.def Info: figures/neff.pdf  used on input line 389.
 (pdftex.def)             Requested size: 453.82397pt x 431.16647pt.
 
-Overfull \hbox (41.259pt too wide) in paragraph at lines 392--393
+Overfull \hbox (41.259pt too wide) in paragraph at lines 389--390
 [][] 
  []
 
-[11] [12 <./figures/val_loss.pdf>] [13 <./figures/cornerplots.pdf>] [14 <./figu
-res/neff.pdf>] [15
+[11 <./figures/val_loss.pdf>] [12 <./figures/cornerplots.pdf>] [13 <./figures/n
+eff.pdf>] [14
 
-] [16
+] [15] [16
 
 ] [17] [18
 
-]
-No file Review_stage1.bbl.
-(./Review_stage1.aux)
+] (./Review_stage1.bbl [19
+
+] [20] [21] [22]
+[23]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [24]
+[25] [26]
+Underfull \hbox (badness 1062) in paragraph at lines 1959--1974
+[]\T1/pplj/m/n/12 (+20) T. A. Cal-lis-ter and W. M. Farr, [][]Phys. Rev. X \T1/
+pplj/b/n/12 (+20) 14\T1/pplj/m/n/12 (+20) , 021005 (2024)[][],
+ []
+
+[27] [28]) [29] (./Review_stage1.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
 Package rerunfilecheck Info: File `Review_stage1.out' has not changed.
-(rerunfilecheck)             Checksum: 51AA1545DAFC63547469D68EB2A89B00;1841.
+(rerunfilecheck)             Checksum: 802C03995FBC454034DC3FFE8BCB4176;1717.
  ) 
 Here is how much of TeX's memory you used:
- 23785 strings out of 474116
- 408436 string characters out of 5743681
- 1940187 words of memory out of 5000000
- 45396 multiletter control sequences out of 15000+600000
- 645267 words of font info for 364 fonts, out of 8000000 for 9000
+ 24135 strings out of 474116
+ 414767 string characters out of 5743681
+ 1944187 words of memory out of 5000000
+ 45566 multiletter control sequences out of 15000+600000
+ 653989 words of font info for 462 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 123i,23n,123p,1010b,767s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 123i,23n,123p,2318b,790s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 ></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
 usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
-sr/local/texlive/2024/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/lo
-cal/texlive/2024/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/
-texlive/2024/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/
-2024/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2024/te
-xmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2024/texmf-dis
-t/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on Review_stage1.pdf (20 pages, 2214953 bytes).
+sr/local/texlive/2024/texmf-dist/fonts/type1/public/fpl/fplbj8a.pfb></usr/local
+/texlive/2024/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texl
+ive/2024/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/
+2024/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2024/tex
+mf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2024/texmf-dist
+/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on Review_stage1.pdf (31 pages, 2261588 bytes).
 PDF statistics:
- 430 PDF objects out of 1000 (max. 8388607)
- 232 compressed objects within 3 object streams
- 48 named destinations out of 1000 (max. 500000)
- 73824 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 676 PDF objects out of 1000 (max. 8388607)
+ 465 compressed objects within 5 object streams
+ 101 named destinations out of 1000 (max. 500000)
+ 82008 words of extra memory for PDF output out of 89155 (max. 10000000)
 
