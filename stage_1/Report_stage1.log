@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.10)  25 AUG 2025 15:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.10)  25 AUG 2025 16:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -686,6 +686,12 @@ Chapter 3.
 
 ]
 Chapter 4.
+
+Overfull \hbox (1.95686pt too wide) in paragraph at lines 463--465
+\T1/cmr/m/n/10.95 Birm-ing-ham and Glas-gow, UK) and one on ma-chine learn-ing 
+ap-plied to gravitational-
+ []
+
 (./Report_stage1.bbl [12
 
 ] [13
@@ -754,7 +760,7 @@ texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2024/te
 xmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2024/texm
 f-dist/fonts/type1/public/cm-super/sfsl1095.pfb></usr/local/texlive/2024/texmf-
 dist/fonts/type1/public/cm-super/sfti1095.pfb>
-Output written on Report_stage1.pdf (21 pages, 2387320 bytes).
+Output written on Report_stage1.pdf (21 pages, 2388006 bytes).
 PDF statistics:
  661 PDF objects out of 1000 (max. 8388607)
  444 compressed objects within 5 object streams
